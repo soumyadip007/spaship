@@ -43,6 +43,7 @@
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
     "express-pino-logger": "^6.0.0",
+    "express-rate-limit": "^6.5.1",
     "express-sanitizer": "^1.0.6",
     "express-validator": "^6.12.2",
     "fs": "0.0.1-security",
