@@ -1,11 +1,12 @@
 import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { IDataServices } from 'src/repository/data-services.abstract';
 import { DIRECTORY_CONFIGURATION } from '../../configuration';
 import { ApplicationService } from './service/application.service';
 
 @Controller('application')
 export class ApplicationController {
-  constructor(private applicationService: ApplicationService) {}
+  constructor(private applicationService: ApplicationService, private dataServices: IDataServices) {}
 
   @Get('/property/:identifier')
   async getApplicationsByProperty(@Param('identifier') identifier: any) {

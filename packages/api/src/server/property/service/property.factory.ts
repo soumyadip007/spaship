@@ -14,12 +14,7 @@ import { DeploymentRecord, Property } from '../property.entity';
 
 @Injectable()
 export class PropertyFactory {
-  constructor(
-    private dataServices: IDataServices,
-    private exceptionService: ExceptionsService,
-    private loggerService: LoggerService,
-    private applicationService: ApplicationService
-  ) {}
+  constructor(private exceptionService: ExceptionsService, private loggerService: LoggerService, private applicationService: ApplicationService) {}
 
   createNewProperty(createPropertyDto: CreatePropertyDto, deploymentRecord: DeploymentRecord): Property {
     const newProperty = new Property();
