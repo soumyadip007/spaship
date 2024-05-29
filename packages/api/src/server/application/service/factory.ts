@@ -57,7 +57,7 @@ export class ApplicationFactory {
 
   private static readonly specialChar1: RegExp = /[\ \-\/\:\@\[\]\`\{\~\.]+/g;
 
-  private static readonly specialChar2: RegExp = /[\|!@#$%^&*;_"<>\(\)\+,]/g;
+  private static readonly specialChar2: RegExp = /[\|!@#$%^&*;"<>\(\)\+,]/g;
 
   private static readonly startEndChar: RegExp = /^-+|-+$/g;
 
@@ -745,7 +745,7 @@ export class ApplicationFactory {
         /* Replace any special characters with `-` */
         .replace(ApplicationFactory.specialChar1, '-')
         /* Special characters are replaced by an underscore */
-        .replace(ApplicationFactory.specialChar2, '-')
+        .replace(ApplicationFactory.specialChar2, '_')
         /* Remove any starting or ending `-` */
         .replace(ApplicationFactory.startEndChar, '')
         /* Removing multiple consecutive `-`s */
