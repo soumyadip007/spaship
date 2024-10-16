@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsArray, IsNotEmpty, IsString } from 'class-validator';
 
 // @internal TODO : We can optimize this module with entity in Future
 export class AuthActionLookupDto {
@@ -12,6 +12,11 @@ export class AuthActionLookupDto {
   @IsString()
   @IsNotEmpty()
   resource: string;
+
+  @ApiProperty()
+  @IsArray()
+  @IsNotEmpty()
+  criteria: string[];
 
   @ApiProperty()
   @IsNotEmpty()

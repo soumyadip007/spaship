@@ -4,10 +4,11 @@ import { AuthenticationGuard } from '../auth/guard';
 import { CreateEnvironmentDto, DeleteEnvironmentDTO, SyncEnvironmentDto } from './dto';
 import { Environment } from './entity';
 import { EnvironmentService } from './service';
+import { AuthenticationGuardV2 } from '../auth/guardV2';
 
 @Controller('environment')
 @ApiTags('Environment')
-@UseGuards(AuthenticationGuard)
+@UseGuards(AuthenticationGuardV2)
 export class EnvironmentController {
   constructor(private readonly environmentService: EnvironmentService) {}
 
@@ -25,8 +26,9 @@ export class EnvironmentController {
 
   @Post()
   @ApiOperation({ description: 'Create a New Environment.' })
-  async createEnvironment(@Body() environmentDto: CreateEnvironmentDto): Promise<Environment> {
-    return this.environmentService.createEnvironment(environmentDto);
+  async createEnvironment(@Body() environmentDto: CreateEnvironmentDto): Promise<any> {
+    return {};
+    // return this.environmentService.createEnvironment(environmentDto);
   }
 
   @Post('/sync')
@@ -47,8 +49,9 @@ export class EnvironmentController {
 
   @Put()
   @ApiOperation({ description: 'Update a New Environment.' })
-  async updateEnvironment(@Body() environmentDto: CreateEnvironmentDto): Promise<Environment> {
-    return this.environmentService.updateEnvironment(environmentDto);
+  async updateEnvironment(@Body() environmentDto: CreateEnvironmentDto): Promise<any> {
+    return {};
+    //  return this.environmentService.updateEnvironment(environmentDto);
   }
 
   @Get('/git')

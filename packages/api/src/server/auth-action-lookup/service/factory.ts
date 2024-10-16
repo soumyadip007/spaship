@@ -12,6 +12,7 @@ export class AuthActionLookupFactory {
     authActionLookup.name = createAuthActionLookupDto.name;
     authActionLookup.resource = createAuthActionLookupDto.resource;
     authActionLookup.method = createAuthActionLookupDto.method;
+    authActionLookup.criteria = createAuthActionLookupDto.criteria;
     this.logger.log('AuthActionLookup', JSON.stringify(authActionLookup));
     return authActionLookup;
   }

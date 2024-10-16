@@ -4,10 +4,11 @@ import { AuthenticationGuard } from 'src/server/auth/guard';
 import { CreatePermissionDto, DeletePermissionDto } from './dto';
 import { Permission } from './entity';
 import { PermissionService } from './service';
+import { AuthenticationGuardV2 } from '../auth/guardV2';
 
 @Controller('permission')
 @ApiTags('Permission')
-@UseGuards(AuthenticationGuard)
+@UseGuards(AuthenticationGuardV2)
 export class PermissionController {
   constructor(private readonly permissionService: PermissionService) {}
 

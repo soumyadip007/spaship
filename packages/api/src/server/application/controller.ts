@@ -19,10 +19,11 @@ import {
 } from './request.dto';
 import { ApplicationService } from './service';
 import { ApplicationFactory } from './service/factory';
+import { AuthenticationGuardV2 } from '../auth/guardV2';
 
 @Controller('applications')
 @ApiTags('Application')
-@UseGuards(AuthenticationGuard)
+@UseGuards(AuthenticationGuardV2)
 export class ApplicationController {
   constructor(
     private readonly applicationService: ApplicationService,
@@ -45,21 +46,21 @@ export class ApplicationController {
   }
 
   @Post('/deploy/:propertyIdentifier/:env')
-  @UseInterceptors(
-    FileInterceptor('upload', {
-      dest: DIRECTORY_CONFIGURATION.baseDir,
-      storage: diskStorage({
-        destination: DIRECTORY_CONFIGURATION.baseDir,
-        filename: (req, file, callback) => {
-          callback(null, `${Date.now()}-${file.originalname.replace(VALIDATION.FILE, '_')}`);
-        }
-      }),
-      fileFilter: (req, file, cb) => {
-        file.filename = `${Date.now()}-${file.originalname.replace(VALIDATION.FILE, '_')}`;
-        cb(null, true);
-      }
-    })
-  )
+  // @UseInterceptors(
+  //   FileInterceptor('upload', {
+  //     dest: DIRECTORY_CONFIGURATION.baseDir,
+  //     storage: diskStorage({
+  //       destination: DIRECTORY_CONFIGURATION.baseDir,
+  //       filename: (req, file, callback) => {
+  //         callback(null, `${Date.now()}-${file.originalname.replace(VALIDATION.FILE, '_')}`);
+  //       }
+  //     }),
+  //     fileFilter: (req, file, cb) => {
+  //       file.filename = `${Date.now()}-${file.originalname.replace(VALIDATION.FILE, '_')}`;
+  //       cb(null, true);
+  //     }
+  //   })
+  // )
   @ApiCreatedResponse({ status: 201, description: 'Application deployed successfully.', type: ApplicationResponse })
   async createApplication(@UploadedFile() file, @Body() applicationDto: CreateApplicationDto, @Param() params, @Query() queries): Promise<any> {
     if (!this.applicationFactory.getIdentifier(applicationDto.name))

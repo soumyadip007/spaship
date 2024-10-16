@@ -74,9 +74,10 @@ export class EnvironmentFactory {
       websiteName: propertyRequest.identifier,
       name: buildEnvironment.name,
       mapping: buildEnvironment.path,
+      cmdbCode: propertyRequest.cmdbCode || 'SPAS-001',
       environments: [{ name: environmentRequest.env, updateRestriction: false, exclude: false, ns: propertyRequest.namespace }]
     };
-    this.logger.log('SpashipFile', JSON.stringify(spashipFile));
+    this.logger.log('SpashipFile-Temp', JSON.stringify(spashipFile));
     const { baseDir } = DIRECTORY_CONFIGURATION;
     const orginalFileName = propertyRequest.identifier;
     const tmpDir = `${baseDir}/${orginalFileName.split('.')[0]}-${Date.now()}`;
